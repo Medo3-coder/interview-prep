@@ -302,8 +302,8 @@ or equal to those of the children and the lowest key is in the root node
     * [UC Berkeley Algorithms](https://archive.org/details/ucberkeley-webcast?&and[]=subject%3A%22Computer%20Science%22&and[]=subject%3A%22CS%22)
 
 ## Courses
-* Must do Pattern Problems before starting DSA
-   * [Striver](https://takeuforward.org/strivers-a2z-dsa-course/must-do-pattern-problems-before-starting-dsa/)
+* Build-up Logical Thinking
+   * [Must do Pattern Problems before starting DSA](https://takeuforward.org/strivers-a2z-dsa-course/must-do-pattern-problems-before-starting-dsa/)
 
 ## Interview Books
 * [Competitive Programming 3 - Steven Halim & Felix Halim](https://www.amazon.com/Competitive-Programming-3rd-Steven-Halim/dp/B00FG8MNN8) 
