@@ -7,8 +7,8 @@ subproblems until we solve the entire problem. It is used when we can define the
 Tabulation is typically implemented using iteration and is well-suited for problems that have a large set of inputs.
 
 
-
-#Top-down approach
+#Memoization:
+Top-down approach
 Caches the results of function calls
 Recursive implementation
 Well-suited for problems with a relatively small set of inputs
@@ -20,4 +20,51 @@ Stores the results of subproblems in a table
 Iterative implementation
 Well-suited for problems with a large set of inputs
 Used when the subproblems do not overlap
-Here’s an example of using memoization and tabulation to solve the same problem – calculating the nth number in the Fibonacci sequenc
+Here’s an example of using memoization and tabulation to solve the same problem – calculating the nth number in the Fibonacci sequence
+
+---------------------------------------------------------
+
+Memoization implementation:
+
+#include <iostream>
+#include <unordered_map>
+ 
+int fibonacci(int n, std::unordered_map<int, int>& cache) {
+    if (cache.find(n) != cache.end()) {
+        return cache[n];
+    }
+    int result;
+    if (n == 0) {
+        result = 0;
+    } else if (n == 1) {
+        result = 1;
+    } else {
+        result = fibonacci(n-1, cache) + fibonacci(n-2, cache);
+    }
+    cache[n] = result;
+    return result;
+}
+
+-----------------------------------------------------------
+
+
+Tabulation implementation:
+
+#include <iostream>
+#include <vector>
+ 
+int fibonacci(int n) {
+    if (n == 0) {
+        return 0;
+    } else if (n == 1) {
+        return 1;
+    } else {
+        std::vector<int> table(n + 1, 0);
+        table[0] = 0;
+        table[1] = 1;
+        for (int i = 2; i <= n; i++) {
+            table[i] = table[i-1] + table[i-2];
+        }
+        return table[n];
+    }
+}
