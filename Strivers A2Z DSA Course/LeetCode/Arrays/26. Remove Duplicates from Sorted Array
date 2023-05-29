@@ -1,0 +1,142 @@
+------------------brute force using SET  ------------ // N(logN) + N ------ SC => O(n)
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+
+       set <int> st;
+       int size = nums.size();
+       for(int i = 0 ; i < size ; i++){
+           st.insert(nums[i]); //inserting elements
+       }
+
+       int index = 0 ;
+       int ans = st.size();
+       for(auto it : st)
+       {
+           nums[index] = it ;
+           index++ ;
+       }
+    return ans ;
+    }
+};
+
+--------------------  other sol using SET ------------
+
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        
+        //set 
+       set <int> st;
+       int size = nums.size();
+       for(int i = 0 ; i < size ; i++){
+           st.insert(nums[i]);
+       }
+       //deleting all elements from nums
+       nums.erase(nums.begin() , nums.end());
+       
+       for(auto it : st)
+       {
+          nums.push_back(it);
+       }
+
+     return nums.size() ;
+    }
+
+    // N(logN) + N
+};
+
+-----------------------------------------------------------
+class Solution {
+public:
+    int removeDuplicates(vector<int>& nums) {
+        
+    int size = nums.size();
+    if(size == 0){
+        return 0 ;
+    }
+
+    int left = 0 ; 
+    int right = 1 ;
+
+    for(right ; right < size ; right++){
+        if(nums[left] != nums[right]){
+          left++ ;
+          nums[left] = nums[right];
+        }
+
+    }
+    return left + 1 ;
+ };
+};
+
+
+
+
+---------------------------------striver sol 
+#include<bits/stdc++.h>
+
+using namespace std;
+int removeDuplicates(int arr[], int n)
+{
+  int i = 0;
+  for (int j = 1; j < n; j++) {
+    if (arr[i] != arr[j]) {
+      i++;
+      arr[i] = arr[j];
+    }
+  }
+  return i + 1;
+}
+int main() {
+  int arr[] = {1,1,2,2,2,3,3};
+  int n = sizeof(arr)/sizeof(arr[0]);
+  int k = removeDuplicates(arr, n);
+  cout << "The array after removing duplicate elements is " << endl;
+  for (int i = 0; i < k; i++) {
+    cout << arr[i] << " ";
+  }
+}
+
+-------------
+Output:
+
+The array after removing duplicate elements is 1 2 3
+
+Time complexity: O(n)
+
+Space Complexity: O(1)
+
+------------------------------striver 2nd sol -------- SET------------------------------
+#include<bits/stdc++.h>
+
+using namespace std;
+int removeDuplicates(int arr[], int n) {
+  set < int > set;
+  for (int i = 0; i < n; i++) {
+    set.insert(arr[i]);
+  }
+  int k = set.size();
+  int j = 0;
+  for (int x: set) {
+    arr[j++] = x;
+  }
+  return k;
+}
+int main() {
+  int arr[] = {1,1,2,2,2,3,3};
+  int n = sizeof(arr)/sizeof(arr[0]);
+  int k = removeDuplicates(arr, n);
+  cout << "The array after removing duplicate elements is " << endl;
+  for (int i = 0; i < k; i++) {
+    cout << arr[i] << " ";
+  }
+}
+
+----------------------------------------------------
+Output: The array after removing duplicate elements is 1 2 3
+
+Time complexity: O(n*log(n))+O(n)
+
+Space Complexity: O(n) 
