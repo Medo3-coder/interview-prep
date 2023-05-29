@@ -1,0 +1,16 @@
+int removeDuplicates(vector<int> &arr, int n) {
+
+	 if(n == 0){
+		 return 0 ;
+	 }
+	 int left = 0 ;
+	 int right = 1 ;
+
+	 for(right ; right < n ; right++){
+		 if(arr[left] != arr[right]){
+			 left++ ;
+			 arr[left] = arr[right];
+		 }
+	 }
+	 return left + 1 ;
+}
