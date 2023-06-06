@@ -1,0 +1,32 @@
+Approach
+some people might be thinking why i am using k=k%n when k>n because there are only two possibility first is when k is divisible by 'n' than no need to change-.. if it's not divisible than k%n time we have to run the loop.
+first you make a vector to copy the given array because if we changing in array will affect the value of given array.That why we have to make a copy of given array.
+second start changing in array nums[i]value to last "num[n-k+i]--> which is 5 when i=0,6 -->i=1,...".run it only k time.for shifting of array last to first
+Third loop will change remain position of array nuumber.basically for shifting of array.
+
+
+class Solution {
+public:
+    void rotate(vector<int>& nums, int k) {
+
+        vector<int> v ;
+        int n = nums.size();
+        if(k > nums.size()){
+        k = k % n ; //check k>n and than check it is divisible by n or not.
+        }
+
+        for(int i = 0 ; i < n ; i++){
+            v.push_back(nums[i]);   // puting nums value to vector..
+        }
+        for(int i = 0 ; i < k ; i++){
+            nums[i] = v[n - k + i] ; // [ 5 , 6 , 7]
+        }
+
+// here we will changing  all value (n-k time)of nums array after runing k time. for shifting of array.
+        for(int i = 0 ; i < n - k ; i++){
+            nums[k + i] = v[i] ;
+        }
+
+           return ;
+    }
+};
