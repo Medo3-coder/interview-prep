@@ -1,3 +1,5 @@
+please check : https://takeuforward.org/data-structure/rotate-array-by-k-elements/
+
 Approach
 some people might be thinking why i am using k=k%n when k>n because there are only two possibility first is when k is divisible by 'n' than no need to change-.. if it's not divisible than k%n time we have to run the loop.
 first you make a vector to copy the given array because if we changing in array will affect the value of given array.That why we have to make a copy of given array.
