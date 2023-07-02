@@ -59,3 +59,45 @@ Each edge in a “weighted graph” has an associated weight. The weight can be 
     }
 }
 ```
+
+2. Using DFS With Stack
+
+```c++
+void dfsPrint(const vector<vector<int>>& graph, int sourceNode) {
+    stack<int> s;
+    s.push(sourceNode);
+
+    while (!s.empty()) {
+        int current = s.top();
+        s.pop();
+        cout << current << endl;
+
+        for (int neighbor : graph[current]) {
+            s.push(neighbor);
+        }
+    }
+}
+```
+
+3. Using BFS With Queue
+
+```c++
+void bfs(const vector<vector<int>>& graph, int sourceNode) {
+    queue<int> q;
+    q.push(sourceNode);
+
+    while (!q.empty()) {
+        int current = q.front();
+        q.pop();
+        cout << current << endl;
+
+        for (int neighbor : graph[current]) {
+            q.push(neighbor);
+        }
+    }
+}
+```
+
+
+### Starting WITH GRAPH Problems
+
