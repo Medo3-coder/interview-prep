@@ -34,7 +34,7 @@ Each edge in a “weighted graph” has an associated weight. The weight can be 
 #### Path
 a path in a graph is a finite or infinite sequence of edges which joins a sequence of vertices which, by most definitions, are all distinct
 
-####Degree of a node in an undirected graph
+#### Degree of a node in an undirected graph
 is the number of edges incident on it
 
 ### The Definition of “graph” and Terminologies
