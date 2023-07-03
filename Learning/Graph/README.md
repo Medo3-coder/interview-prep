@@ -31,6 +31,9 @@ Each edge in a “weighted graph” has an associated weight. The weight can be 
 ![Weighted graphs](/public/Weightedgraphs.png)
 
 
+#### Path
+a path in a graph is a finite or infinite sequence of edges which joins a sequence of vertices which, by most definitions, are all distinct
+
 ### The Definition of “graph” and Terminologies
 
 “Graph” is a non-linear data structure consisting of vertices and edges. There are a lot of terminologies to describe a graph. If you encounter an unfamiliar term in the following Explore Card, you may look up the definition below.
