@@ -1,0 +1,70 @@
+class Solution 
+{
+    public:
+    //Function to find minimum time required to rot all oranges. 
+    int orangesRotting(vector<vector<int>>& grid) {
+        int n = grid.size();
+        int m = grid[0].size();
+         // store {{row, column}, time}
+        queue<pair<pair<int , int> , int>>q ;
+        int visited[n][m];
+        
+        for(int i = 0 ; i < n ; i++){
+            for(int j = 0 ; j < m ; j++){
+                if(grid[i][j] == 2){
+                    q.push({{i , j} , 0});
+                     // mark as visited (rotten) in visited array
+                     visited[i][j] = 2 ;
+                }
+                else{
+                   // if not rotten
+                    visited[i][j] = 0;
+                }
+                
+            }
+        }
+        
+        
+         // delta row and delta column
+          int dlrow[] = {-1 , 0 ,+1, 0};
+          int dlcol[] = {0 , 1 ,0 ,-1};
+          int tm = 0 ;
+          while(!q.empty())
+          {
+              int row = q.front().first.first;
+              int col = q.front().first.second;
+              int t   = q.front().second;
+              tm = max(tm , t);
+              q.pop();
+              
+              
+              // exactly 4 neighbours 
+              for(int i = 0 ; i < 4 ; i++){
+                  int newRow = row + dlrow[i];
+                  int newCol = col + dlcol[i];
+               // check for valid cell and 
+               // then for unvisited fresh orange
+               if(newRow < n && newRow >= 0 && newCol < m && newCol >= 0 &&
+                 visited[newRow][newCol] == 0 &&  grid[newRow][newCol] == 1)
+               {
+                   q.push({{newRow , newCol} , t + 1});
+                   // mark as rotten
+                   visited[newRow][newCol] = 2 ;
+               }
+              }
+          }
+          
+          
+           // if  oranges are not rotten
+           
+           for(int i = 0 ; i < n ; i++){
+               for(int j = 0 ; j < m ; j++){
+                   if(visited[i][j] !=2 && grid[i][j] == 1)
+                   {
+                       return -1 ;
+                   }
+               }
+           }
+           return tm ;
+    }
+};
