@@ -1,3 +1,7 @@
+1 - Iterative Solution / Space Optimized Soln.
+Time complexity: O(n)
+Space complexity: O(1)
+
 class Solution {
 public:
     int fib(int n) {
