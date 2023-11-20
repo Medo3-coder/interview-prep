@@ -1,4 +1,20 @@
-1 - Using Tabulation
+class Solution {
+public:
+    int fib(int n) {
+        if(n==0 || n==1) return n;
+         int prev2 =0;
+         int prev  =1;
+        for(int i=2;i<=n;i++){
+            int curr_i = prev2 + prev;
+            prev2 = prev ;
+            prev = curr_i;
+        }
+        return prev;
+    }
+};
+
+-----------------------------------------
+2 - Using Tabulation
 
 Time complexity: O(n)
 Space complexity: O(n)
@@ -17,7 +33,7 @@ public:
     }
 };
 -----------------------------------------------------------------
-2 - Using Resursion
+3 - Using Resursion
 
 Time complexity: O(2^n)
 Space complexity: O(2^n)
