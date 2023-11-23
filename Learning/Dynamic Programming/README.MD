@@ -8,7 +8,7 @@ Dynamic Programming (DP) is a programming paradigm that can systematically and e
  - Do All Possible Stuffs On That Index According To Problem Statemnt
  - If The Question sayes **"Count All Ways"** Sum Up All Stuffs 
  - if The Question sayes **"Find The Minimum"** Take The Minimum of All Stuffs
- - i fThe Question sayes **"Find The Maximum"** Take The Maximum of All Stuffs
+ - if The Question sayes **"Find The Maximum"** Take The Maximum of All Stuffs
 
 ### DP Characteristics
 
