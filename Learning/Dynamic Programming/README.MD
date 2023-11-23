@@ -2,6 +2,14 @@
 
 Dynamic Programming (DP) is a programming paradigm that can systematically and efficiently explore all possible solutions to a problem. As such, it is capable of solving a wide variety of problems that often have the following characteristics:
 
+### ShortCut Trick 
+
+ - Try To Respresnt Problem In Terms Of Index
+ - Do All Possible Stuffs On That Index According To Problem Statemnt
+ - If The Question sayes **"Count All Ways"** Sum Up All Stuffs 
+ - if The Question sayes **"Find The Minimum"** Take The Minimum of All Stuffs
+ - i fThe Question sayes **"Find The Maximum"** Take The Maximum of All Stuffs
+
 ### DP Characteristics
 
 - The problem can be broken down into **"overlapping subproblems"** - smaller versions of the original problem that are re-used multiple times.
@@ -127,15 +135,24 @@ The equation \text{dp(i) = dp(i - 1) + dp(i - 2)}dp(i) = dp(i - 1) + dp(i - 2) o
 
 #### Example Implementations
 
-```javascript
-var climbStairsNotMemoized = function (n) {
-  const dp = (stair) => {
-    if (stair <= 2) return stair; // Base cases
-    return dp(stair - 1) + dp(stair - 2); // Recurrence relation
-  };
+```C++
+#include <iostream>
 
-  return dp(n);
-};
+int climbStairsNotMemoized(int n) {
+    if (n <= 2)
+        return n; // Base cases
+    return climbStairsNotMemoized(n - 1) + climbStairsNotMemoized(n - 2); // Recurrence relation
+}
+int main() {
+    int n;
+    std::cout << "Enter the number of stairs: ";
+    std::cin >> n;
+
+    int ways = climbStairsNotMemoized(n);
+    std::cout << "Number of ways to climb the stairs: " << ways << std::endl;
+
+    return 0;
+}
 ```
 
 Note this Solution is So Bad
@@ -148,38 +165,69 @@ the number of operations we would have to do is approximately equal to the numbe
 
 **Solution2 Using TOP-Down With Memoization**
 
-```javascript
-var climbStairsTopDown = function (n) {
-  const memo = {};
-  const dp = (stair) => {
-    if (stair <= 2) return stair; // Base cases
+```C++
+#include <iostream>
+#include <unordered_map>
 
-    if (memo[stair]) return memo[stair];
+int climbStairsTopDown(int n, std::unordered_map<int, int>& memo) {
+    if (n <= 2)
+        return n; // Base cases
 
-    memo[stair] = dp(stair - 1) + dp(stair - 2); // Caching Result if Not Exists
-    return memo[stair];
-  };
+    if (memo.find(n) != memo.end())
+        return memo[n]; // Return cached result if it exists
 
-  return dp(n);
-};
+    memo[n] = climbStairsTopDown(n - 1, memo) + climbStairsTopDown(n - 2, memo); // Caching result if not exists
+    return memo[n];
+}
+
+int climbStairsTopDown(int n) {
+    std::unordered_map<int, int> memo;
+    return climbStairsTopDown(n, memo);
+}
+
+int main() {
+    int n;
+    std::cout << "Enter the number of stairs: ";
+    std::cin >> n;
+
+    int ways = climbStairsTopDown(n);
+    std::cout << "Number of ways to climb the stairs: " << ways << std::endl;
+
+    return 0;
+}
 ```
 
 **With memoization, our time complexity drops to O(n) - astronomically better, literally.**
 
 **Solution3 Using Bottom Up**
 
-```javascript
-var climbStairsBottomUp = function (n) {
-  if (n === 1) return n;
+```C++
+#include <iostream>
+#include <vector>
 
-  const dp = new Array(n + 1).fill(0);
-  dp[1] = 1;
-  dp[2] = 2;
-  for (let i = 3; i < n + 1; i++) {
-    dp[i] = dp[i - 1] + dp[i - 2];
-  }
-  return dp[n];
-};
+int climbStairsBottomUp(int n) {
+    if (n == 1)
+        return n;
+
+    std::vector<int> dp(n + 1, 0);
+    dp[1] = 1;
+    dp[2] = 2;
+    for (int i = 3; i < n + 1; i++) {
+        dp[i] = dp[i - 1] + dp[i - 2];
+    }
+    return dp[n];
+}
+
+int main() {
+    int n;
+    std::cout << "Enter the number of stairs: ";
+    std::cin >> n;
+
+    int ways = climbStairsBottomUp(n);
+    std::cout << "Number of ways to climb the stairs: " << ways << std::endl;
+
+    return 0;
+}
 ```
 
 ### Summarize
