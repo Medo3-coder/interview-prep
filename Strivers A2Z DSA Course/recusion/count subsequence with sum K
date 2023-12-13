@@ -3,6 +3,11 @@
 using namespace std;
 
 int printF(int index , int s , int sum , int arr[] , int n){
+
+    //condition not satisfied 
+    // strictly done if array contains positives only
+    if(s > sum) return 0 ;
+
     if(index == n){
         // condition satisfied
         if(s == sum){
