@@ -13,7 +13,15 @@ private:
       {
          //to avoid picking up the same combnations i.e. we don't pick same element for certain kth   
          //position of a combination 
-          if(i != index && candidates[i] == candidates[i - 1]) continue;
+
+         //  if(i != index && candidates[i] == candidates[i - 1]) continue;
+/*
+i > index: This condition ensures that we are not checking the first element at a given index. 
+It prevents unnecessary duplicate combinations when we have consecutive identical elements in the array.
+*/
+
+         
+          if(i > index && candidates[i] == candidates[i - 1]) continue;   
           if(candidates[i] > target) break;
 
           ds.push_back(candidates[i]);
