@@ -1,0 +1,44 @@
+class Solution {
+
+private: 
+  void findCombination(int index ,int target,vector<int>&candidates,vector<vector<int>> &result ,vector<int> &ds)
+  {
+      if(target == 0)
+      {
+        result.push_back(ds);
+        return;
+      }
+
+      for(int i = index ; i < candidates.size() ; i++)
+      {
+         //to avoid picking up the same combnations i.e. we don't pick same element for certain kth   
+         //position of a combination 
+          if(i != index && candidates[i] == candidates[i - 1]) continue;
+          if(candidates[i] > target) break;
+
+          ds.push_back(candidates[i]);
+          findCombination(i + 1 , target - candidates[i] , candidates,  result , ds);
+          ds.pop_back();
+
+      }
+  }
+public:
+    vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
+        sort(candidates.begin() , candidates.end());
+        vector<vector<int>> answer ; 
+        vector<int>ds ; 
+        findCombination( 0 ,target ,  candidates , answer , ds);
+        return  answer;
+    }
+};
+
+
+/*
+For example, let's say the array is [1,6,1,2,1,6,1] and the sum is 8.
+Whenever we prevent arising of duplicate solutions, we usually first sort the array in this case.
+So our array becomes [1,1,1,1,2,6,6].
+If that condition was not in place, for the combination [1,1,6] we would have got 4C2 * 2C1 = 12 times. ( i.e picking any two 1s out of four possible 1s and one 6 out of two sixes.
+But we do not need [1,1,6] 12 times. not [2,6] 2 times. We just need the solution without any possible duplicate combination. which is [[1,1,6],[2,6]].
+
+So in simple terms, to prevent duplicates
+*/
