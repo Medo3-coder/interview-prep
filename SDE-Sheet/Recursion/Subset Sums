@@ -1,0 +1,28 @@
+class Solution
+{
+    
+private: 
+    void subsetSumsHelper(int index , int sum , vector<int>&arr , int N , vector<int>&answer)
+    {
+        if(index == N)
+        {
+            answer.push_back(sum);
+            return; 
+        }
+        
+        //element is picked
+        subsetSumsHelper(index + 1 , sum + arr[index] , arr , N , answer );
+        
+        //element is not picked
+        subsetSumsHelper(index + 1 , sum , arr , N ,answer);
+    }
+public:
+    vector<int> subsetSums(vector<int> arr, int N)
+    {
+        vector<int> answer ; 
+        subsetSumsHelper(0 , 0 , arr , N , answer);
+      // sort(ans.begin(), ans.end());
+        return answer;
+        
+    }
+};
