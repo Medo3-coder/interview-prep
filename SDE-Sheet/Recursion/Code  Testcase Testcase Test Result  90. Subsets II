@@ -1,0 +1,33 @@
+class Solution {
+private: 
+   void findSubsets(int index, vector<int>&nums , vector<int>&ds ,vector<vector<int>>&answer)
+   {
+       answer.push_back(ds);
+       for(int i = index ; i < nums.size() ; i++)
+       {
+           //(i != index) to avoid picking up the same element
+           if(i != index && nums[i] == nums[i - 1]) continue;
+           ds.push_back(nums[i]);
+           findSubsets(i + 1 , nums , ds , answer);
+           ds.pop_back();
+       }
+   }
+public:
+    vector<vector<int>> subsetsWithDup(vector<int>& nums) {
+        vector<int> ds ;
+        vector<vector<int>> answer ;
+        sort(nums.begin() , nums.end());
+        findSubsets(0 , nums , ds , answer);
+        return answer ;
+    }
+};
+
+// 1 2 2 
+// 0 1 2     i != index
+
+
+/*
+Time Complexity: O( 2^n *(k log (x) )). 2^n  for generating every subset and k* log( x)  to insert every combination of average length k in a set of size x. After this, we have to convert the set of combinations back into a list of list /vector of vectors which takes more time.
+
+Space Complexity:  O(2^n * k) to store every subset of average length k. Since we are initially using a set to store the answer another O(2^n *k) is also used.
+*/
