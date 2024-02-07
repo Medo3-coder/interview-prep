@@ -1,0 +1,63 @@
+class Solution {
+private: 
+
+void partitionHelper(int index , string s , vector<vector<string>>& answer , vector<string>& path)
+ {
+     //base case 
+     if(index == s.size())
+     {
+         answer.push_back(path);
+         return ;
+     }
+     for(int i = index ; i < s.size() ; i++)
+     {
+        if(isPalindrome(s , index , i))
+        {
+            // we want to test all substrings, each substring is a potential candidate
+            // e.g. "aab" -> "a", "a", "b", "ab", "aa", "b", "aab"
+             path.push_back(s.substr(index, i - index + 1));
+             partitionHelper(i + 1 , s, answer , path);
+             path.pop_back();
+        }
+     }
+ }
+
+
+ bool isPalindrome(string s , int start , int end)
+ {
+     while(start <= end)
+     {
+         if(s[start++] != s[end--])
+         {
+             return false ;
+         }
+     }
+     return true ;
+ }
+public:
+
+    vector<vector<string>> partition(string s) {
+        vector<vector<string>> answer ;
+        vector<string> path ;
+        partitionHelper(0 , s , answer , path);
+        return answer ;
+    }
+
+};
+
+
+
+/*
+Time Complexity: O( (2^n) *k*(n/2) )
+
+Reason: O(2^n) to generate every substring and O(n/2)  
+to check if the substring generated is a palindrome. 
+O(k) is for inserting the palindromes in another data structure, where k  
+is the average length of the palindrome list.
+
+Space Complexity: O(k * x)
+
+Reason: The space complexity can vary depending upon the length of the answer.
+ k is the average length of the list of palindromes and if we have x such list of palindromes in our final answer.
+The depth of the recursion tree is n, so the auxiliary space required is equal to the O(n).
+*/
