@@ -1,0 +1,69 @@
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+
+class Node{
+public:
+    int data; 
+    Node* next ;
+    
+    Node(int data1 , Node* next1){
+        data = data1 ;
+        next = next1 ;
+    }
+    
+    Node(int data1)
+    {
+        data = data1;
+        next = NULL ;
+    }
+};
+
+// Function to find the middle
+// node of a linked list
+
+Node* findMiddle(Node* head)
+{
+    // Initialize the slow pointer to the head.
+    Node* slow = head ;
+    // Initialize the fast pointer to the head.
+    Node* fast = head ;
+    
+    // Traverse the linked list using the
+    // Tortoise and Hare algorithm.
+    if(fast != NULL && fast->next != NULL)
+    {
+         // Move slow one step.
+        slow = slow->next;
+        // Move fast two steps.
+        fast = fast->next->next;
+    }
+    
+     // Return the slow pointer,
+     // which is now at the middle node.
+    return slow ;
+}
+int main() {
+     // Creating a sample linked list: 
+   Node* head = new Node(1);
+    head->next = new Node(2);
+    head->next->next = new Node(3);
+    head->next->next->next = new Node(4);
+    head->next->next->next->next = new Node(5);
+    
+    // Find the middle node
+    Node* middleNode = findMiddle(head);
+    
+    // Display the value of the middle node
+    cout<< "the middle of the linked list is: " << middleNode->data << endl;
+    
+
+    return 0;
+}
+
+
+
+Time Complexity: O(N/2) The algorithm requires the 'fast' pointer to reach the end of the list which it does after approximately N/2 iterations (where N is the total number of nodes). Therefore, the maximum number of iterations needed to find the middle node is proportional to the number of nodes in the list, making the time complexity linear, or O(N/2) ~ O(N).
+
+Space Complexity : O(1) There is constant space complexity because it uses a constant amount of extra space regardless of the size of the linked list. We only use a few variables to keep track of the middle position and traverse the list, and the memory required for these variables does not depend on the size of the list.
