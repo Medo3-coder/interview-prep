@@ -1,0 +1,77 @@
+#include <iostream>
+#include <vector>
+#include <algorithm> // for the find function
+
+class MyHashSet {
+private:
+    int numBuckets; // Number of buckets in the hash table
+    std::vector<std::vector<int>> buckets; // A vector of vectors to represent the hash table
+
+    // Hash function to determine which bucket a key should be placed in
+    int hash_function(int key) {
+        return key % numBuckets; // Maps the key to a bucket index based on modulo operation
+    }
+
+public:
+    // Constructor: Initialize the number of buckets and create the hash table
+    MyHashSet() {
+        numBuckets = 100; // Set the number of buckets to a fixed value (100)
+        buckets = std::vector<std::vector<int>>(numBuckets, std::vector<int>{});
+    }
+    
+    // Method to add a key to the hash set
+    void add(int key) {
+        int i = hash_function(key); // Get the bucket index for the key using the hash function
+        // Check if the key is already in the bucket to avoid duplicates
+        if (std::find(buckets[i].begin(), buckets[i].end(), key) == buckets[i].end()) {
+            buckets[i].push_back(key); // If the key is not present, add it to the bucket
+        }
+    }
+    
+    // Method to remove a key from the hash set
+    void remove(int key) {
+        int i = hash_function(key); // Get the bucket index for the key using the hash function
+        // Find the key in the bucket
+        auto it = std::find(buckets[i].begin(), buckets[i].end(), key);
+        if (it != buckets[i].end()) { // If the key is found in the bucket
+            buckets[i].erase(it); // Remove the key from the bucket
+        }
+    }
+    
+    // Method to check if a key exists in the hash set
+    bool contains(int key) {
+        int i = hash_function(key); // Get the bucket index for the key using the hash function
+        // Check if the key is present in the bucket
+        if (std::find(buckets[i].begin(), buckets[i].end(), key) == buckets[i].end()) {
+            return false; // If the key is not found, return false
+        } else {
+            return true; // If the key is found, return true
+        }
+    }
+};
+
+/**
+ * Example of how to use the MyHashSet object:
+ * MyHashSet* obj = new MyHashSet();
+ * obj->add(key);
+ * obj->remove(key);
+ * bool param_3 = obj->contains(key);
+ */
+
+int main() {
+    // Example to test the MyHashSet implementation
+    MyHashSet* myHashSet = new MyHashSet();
+
+    myHashSet->add(1);           // Adds key 1 to the set
+    myHashSet->add(2);           // Adds key 2 to the set
+    std::cout << myHashSet->contains(1) << std::endl; // Output: 1 (true) because 1 is in the set
+    std::cout << myHashSet->contains(3) << std::endl; // Output: 0 (false) because 3 is not in the set
+    myHashSet->add(2);           // Key 2 is already present, so no duplicate is added
+    std::cout << myHashSet->contains(2) << std::endl; // Output: 1 (true) because 2 is in the set
+    myHashSet->remove(2);        // Removes key 2 from the set
+    std::cout << myHashSet->contains(2) << std::endl; // Output: 0 (false) because 2 was removed from the set
+
+    delete myHashSet; // Clean up the allocated memory
+
+    return 0;
+}
