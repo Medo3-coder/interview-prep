@@ -1,0 +1,34 @@
+https://www.naukri.com/code360/problems/ceiling-in-a-sorted-array_1825401?leftPanelTabValue=PROBLEM
+
+pair<int, int> getFloorAndCeil(vector<int> &a, int n, int x) {
+   // Floor and Ceiling variables
+   int Floor = -1 , ceil = -1 ;
+
+  // Finding Floor
+    int left = 0, right = n - 1;
+    while (left <= right) {
+        int mid = left + (right - left) / 2;
+
+        if (a[mid] <= x) {
+            Floor = a[mid];  // Update floor
+            left = mid + 1;  // Move right to find a larger candidate
+        } else {
+            right = mid - 1; // Move left
+        }
+    }
+
+    // Finding Ceiling
+        left = 0, right = n - 1;
+    while(left <= right){
+        int mid = left + (right - left) / 2;
+
+        if(a[mid] >= x){
+            ceil = a[mid];   // Update ceil
+            right = mid - 1; // Move left to find a smaller candidate
+        } else {
+            left = mid + 1 ; // Move right
+        }
+    }
+
+    return {Floor , ceil};
+}
