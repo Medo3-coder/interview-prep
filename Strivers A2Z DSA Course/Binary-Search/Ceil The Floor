@@ -4,7 +4,7 @@ pair<int, int> getFloorAndCeil(vector<int> &a, int n, int x) {
    // Floor and Ceiling variables
    int Floor = -1 , ceil = -1 ;
 
-  // Finding Floor
+   // Finding Floor : Floor Calculation (Upper Bound Concept)
     int left = 0, right = n - 1;
     while (left <= right) {
         int mid = left + (right - left) / 2;
@@ -17,7 +17,7 @@ pair<int, int> getFloorAndCeil(vector<int> &a, int n, int x) {
         }
     }
 
-    // Finding Ceiling
+    // Finding Ceiling : Ceiling Calculation (Lower Bound Concept)
         left = 0, right = n - 1;
     while(left <= right){
         int mid = left + (right - left) / 2;
