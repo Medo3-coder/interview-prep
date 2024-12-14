@@ -1,3 +1,95 @@
+Binary tree traversal refers to the process of visiting each node in a tree exactly once in a systematic way. There are several types of traversal methods:
+
+---
+
+### **1. Depth-First Traversal (DFS)**  
+DFS explores as far as possible along each branch before backtracking. It has three main types:
+
+#### a. **In-order Traversal (Left, Root, Right)**  
+- Visit the left subtree, then the root, and finally the right subtree.  
+- Commonly used in Binary Search Trees (BSTs) to retrieve elements in sorted order.  
+**Example:**  
+For the tree:  
+```
+       1
+      / \
+     2   3
+    / \
+   4   5
+```  
+In-order traversal: `4, 2, 5, 1, 3`
+
+---
+
+#### b. **Pre-order Traversal (Root, Left, Right)**  
+- Visit the root, then the left subtree, and finally the right subtree.  
+- Used for creating a copy of the tree or for prefix expressions.  
+**Example:**  
+Pre-order traversal: `1, 2, 4, 5, 3`
+
+---
+
+#### c. **Post-order Traversal (Left, Right, Root)**  
+- Visit the left subtree, then the right subtree, and finally the root.  
+- Used for deleting the tree or for postfix expressions.  
+**Example:**  
+Post-order traversal: `4, 5, 2, 3, 1`
+
+---
+
+### **2. Breadth-First Traversal (BFS)**  
+BFS visits all nodes at the current level before moving to the next level. It is also called **Level Order Traversal**.  
+**Example:**  
+For the same tree:  
+```
+       1
+      / \
+     2   3
+    / \
+   4   5
+```  
+Level order traversal: `1, 2, 3, 4, 5`
+
+---
+
+### **3. Boundary Traversal**  
+- Traverses the boundary of the binary tree in an anti-clockwise direction.  
+  - **Left Boundary**: Nodes on the left edge (excluding leaf nodes).  
+  - **Leaves**: All leaf nodes from left to right.  
+  - **Right Boundary**: Nodes on the right edge (excluding leaf nodes and root).  
+
+---
+
+### **4. Vertical Order Traversal**  
+- Nodes are grouped and visited column-wise from leftmost to rightmost columns.  
+- Commonly used in problems requiring vertical visualization of binary trees.
+
+---
+
+### **5. Spiral (Zigzag) Order Traversal**  
+- Traverses the nodes level by level, but alternates the direction for each level.  
+  - Level 1: Left to Right  
+  - Level 2: Right to Left  
+
+---
+
+### **6. Morris Traversal**  
+- A space-efficient traversal method that modifies the tree temporarily to achieve **in-order** traversal without using recursion or a stack.  
+
+---
+
+### **Comparison of Traversals**  
+
+| **Traversal Type**  | **Order**                  | **Use Case**                                  |
+|----------------------|---------------------------|-----------------------------------------------|
+| In-order             | Left → Root → Right      | Sorted output for BSTs                       |
+| Pre-order            | Root → Left → Right      | Tree copying, prefix expressions             |
+| Post-order           | Left → Right → Root      | Tree deletion, postfix expressions           |
+| Level-order          | Top level → Bottom level | BFS, shortest path in an unweighted tree     |
+| Spiral-order         | Alternating directions   | Tree visualization in zigzag pattern         |
+
+If you'd like examples or code implementations for any specific traversal type, let me know!
+
 Binary trees are hierarchical data structures with various specialized forms based on constraints and applications. Below is a list of all major types of binary trees:
 
 ---
