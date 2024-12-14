@@ -1,5 +1,47 @@
 Binary tree traversal refers to the process of visiting each node in a tree exactly once in a systematic way. There are several types of traversal methods:
 
+
+# Introduction to Trees
+
+A **tree** is a hierarchical data structure consisting of nodes connected by edges. It's widely used to represent hierarchical relationships.
+
+## Key Terminologies
+
+- **Node**: An element containing data and references to its child nodes.
+- **Root**: The topmost node without a parent.
+- **Edge**: A link connecting two nodes.
+- **Parent**: A node that has one or more child nodes.
+- **Child**: A node descended from another node.
+- **Sibling**: Nodes sharing the same parent.
+- **Leaf**: A node without children.
+- **Internal Node**: A node with at least one child.
+- **Degree**: The number of children a node has.
+- **Level**: The distance from the root node.
+- **Height**: The length of the longest path from a node to a leaf.
+- **Depth**: The distance from the root to a node.
+- **Path**: A sequence of nodes and edges connecting a node to a descendant.
+- **Subtree**: A tree consisting of a node and its descendants.
+
+## Types of Trees
+
+- **General Tree**: No constraints on the number of children.
+- **Binary Tree**: Each node has at most two children.
+- **Binary Search Tree (BST)**: A binary tree where the left child contains values less than the parent, and the right child contains values greater than the parent.
+- **AVL Tree**: A self-balancing BST where the difference in heights between left and right subtrees is at most one.
+- **Red-Black Tree**: A self-balancing BST with nodes colored red or black to ensure balance during insertions and deletions.
+- **Splay Tree**: A self-adjusting BST that moves recently accessed elements to the root.
+- **Treap**: A combination of a binary search tree and a heap, where each node has a key and a priority.
+
+## Tree Traversal Methods
+
+- **In-Order Traversal**: Traverse the left subtree, visit the root, then traverse the right subtree.
+- **Pre-Order Traversal**: Visit the root, traverse the left subtree, then traverse the right subtree.
+- **Post-Order Traversal**: Traverse the left subtree, traverse the right subtree, then visit the root.
+
+Understanding these concepts is fundamental for working with hierarchical data structures and algorithms.
+
+
+
 ---
 
 ### **1. Depth-First Traversal (DFS)**  
